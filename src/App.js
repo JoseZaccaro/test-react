@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import Checkout from './pages/Checkout';
+import Payment from './pages/Payment';
+import ContainerCheckout from './layouts/ContainerCheckout';
 
 function App() {
+  const [step, setStep] = React.useState(0);
+  const [email, setEmail] = React.useState({ email: '', notifications: false });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="wrapper w-100 d-block">
+      <ContainerCheckout>
+        {step === 0 && <Checkout stepState={[step, setStep]} emailState={[email, setEmail]} />}
+        {step === 1 && <Payment stepState={[step, setStep]} />}
+      </ContainerCheckout>
     </div>
   );
 }
